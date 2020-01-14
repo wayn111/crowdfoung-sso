@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>admin</h2>
+<a href="http://localhost:82/ssoclient/client">client</a>
+<a href="http://localhost:81/ssoclient1/client">client1</a>
+<br>
+<div th:each="user:${users}">
+    <label th:text="${user}"></label>
+</div>
+</body>
+</html>

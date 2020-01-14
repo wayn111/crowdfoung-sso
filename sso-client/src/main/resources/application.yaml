@@ -1,0 +1,20 @@
+server:
+  port: 82
+  servlet:
+    session:
+      persistent: false
+    timeout: 1800
+    context-path: /ssoclient
+sso:
+  server: http://localhost/ssoserver
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      port: 35728
+# 日志配置
+logging:
+  level:
+    org.springframework: debug
