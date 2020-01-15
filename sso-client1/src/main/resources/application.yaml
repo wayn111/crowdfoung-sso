@@ -8,6 +8,7 @@ server:
 
 sso:
   server: http://localhost/ssoserver
+  tokenRefreshTime: 1
 
 spring:
   devtools:

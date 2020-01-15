@@ -1,6 +1,6 @@
 package com.wayn.ssoclient1.config;
 
-import com.wayn.ssocore.filter.SsoFilter;
+import com.wayn.ssocore.filter.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -15,11 +15,12 @@ public class WebConfig {
 
     @Bean
     public FilterRegistrationBean filterRegistrationBean() {
-        SsoFilter ssoFilter = new SsoFilter();
-        ssoFilter.setSsoServerUrl(appConfig.getServer());
+        JwtFilter jwtFilter = new JwtFilter();
+        jwtFilter.setSsoServerUrl(appConfig.getServer());
+        jwtFilter.setTokenRefreshTime(appConfig.getTokenRefreshTime());
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        registrationBean.setFilter(ssoFilter);
-        registrationBean.setName("ssoFilter");
+        registrationBean.setFilter(jwtFilter);
+        registrationBean.setName("jwtFilter");
         registrationBean.setUrlPatterns(Arrays.asList("/*"));
         return registrationBean;
     }

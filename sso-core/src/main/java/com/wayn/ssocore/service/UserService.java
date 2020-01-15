@@ -5,4 +5,6 @@ import com.wayn.ssocore.entity.User;
 public interface UserService {
 
     User getUser(User user);
+
+    User getUserByUserName(String username);
 }

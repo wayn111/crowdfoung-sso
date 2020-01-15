@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix = "sso")
-@ComponentScan("com.wayn.ssoclient")
+@ComponentScan("com.wayn")
 public class AppConfig {
     private String server;
+
+    private int tokenRefreshTime;
 }

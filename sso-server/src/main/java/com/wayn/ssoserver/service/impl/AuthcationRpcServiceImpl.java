@@ -1,4 +1,4 @@
-package com.wayn.ssoserver.service;
+package com.wayn.ssoserver.service.impl;
 
 import com.wayn.ssocore.entity.User;
 import com.wayn.ssocore.service.AuthcationRpcService;

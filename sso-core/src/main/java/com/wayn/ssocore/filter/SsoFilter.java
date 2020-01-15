@@ -4,6 +4,7 @@ import com.caucho.hessian.client.HessianProxyFactory;
 import com.wayn.ssocore.entity.SessionUser;
 import com.wayn.ssocore.entity.User;
 import com.wayn.ssocore.service.AuthcationRpcService;
+import com.wayn.ssocore.util.UrlUtil;
 import lombok.Data;
 import org.springframework.util.StringUtils;
 
@@ -70,7 +71,7 @@ public class SsoFilter implements Filter {
                 sessionUser1.setToken(token);
                 sessionUser1.setUser(user);
                 req.getSession().setAttribute("sessionUser", sessionUser1);
-                String backUrl = getBackUrl(req);
+                String backUrl = UrlUtil.getBackUrl(req);
                 backUrl = backUrl.substring(0, backUrl.indexOf("token") - 1);
                 // 重跳转当前url，去除token参数
                 resp.sendRedirect(backUrl);
@@ -83,12 +84,7 @@ public class SsoFilter implements Filter {
             }
             session.setAttribute("sessionUser", null);
         }
-        resp.sendRedirect(ssoServerUrl + "/login?" + "backUrl=" + URLEncoder.encode(getBackUrl(req), "UTF-8"));
-    }
-
-    private String getBackUrl(HttpServletRequest req) {
-        return new StringBuilder().append(req.getRequestURL())
-                .append(req.getQueryString() == null ? "" : "?" + req.getQueryString()).toString();
+        resp.sendRedirect(ssoServerUrl + "/login?" + "backUrl=" + URLEncoder.encode(UrlUtil.getBackUrl(req), "UTF-8"));
     }
 
     @Override
